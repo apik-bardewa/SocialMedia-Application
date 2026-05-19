@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import getCurrentUser from '../hooks/getCurrentUser';
 import Profile from '../pages/Profile';
 import getSuggestUser from '../hooks/getSuggestUser';
+import SignOut from '../pages/SignOut';
 
 function Approutes() {
   const {userData} = useSelector(state=>state.user);
@@ -21,6 +22,8 @@ function Approutes() {
           <Route path='/signup' element={!userData?<Signup/>:<Home/>}/>
           <Route path='/signin' element={!userData?<SignIn/>:<Home/>}/>
           <Route path='/' element={userData?<Home/>:<Signup/>}/>
+          <Route path='/signout' element={<SignOut/>}/>
+
           <Route path='/getProfile/:userName' element={userData?<Profile/>:<Signup/>}/>
         </Routes>
     </div>
