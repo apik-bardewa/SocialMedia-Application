@@ -37,13 +37,13 @@ export const suggestUser =async(req,res)=>{
 export const editProfile =async (req,res)=>{
   try {
     const {name,userName,bio,profession,gender} = req.body;
-    const user = User.findById(req.userId).select("-password");
+    const user =await User.findById(req.userId).select("-password");
     if(!user){
       return res.status(400).json({msg:"user not found"});
     }
-    const sameuserName = User.findOne({userName}).select("-password");
+    const sameuserName =await User.findOne({userName}).select("-password");
     if(sameuserName && sameuserName._id!=req.userId){
-      res.send.status(400).json({msg:"already user"});
+      return res.status(400).json({msg:"already user"});
     }
 
     let profileImage;
@@ -59,7 +59,7 @@ export const editProfile =async (req,res)=>{
     await user.save();
     return res.status(200).json("user data updated successfully");
   } catch (error) {
-    return res.status(500).json("user data updation error",error);
+    return res.status(500).json({msg:"user data updation error",error:error});
   }
 }
 

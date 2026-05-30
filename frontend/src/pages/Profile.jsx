@@ -79,7 +79,7 @@ function Profile() {
   const handleSubmit =async (e) => {
     e.preventDefault();
     
-    const datafromform = await axios.post("http://localhost:8000/api/user/editProfile",{form},{withCredentials:true});
+    const datafromform = await axios.post("http://localhost:8000/api/user/editProfile",form,{withCredentials:true});
     console.log("Updated Profile:", datafromform);    // TODO: dispatch update profile API
   };
 
@@ -203,7 +203,7 @@ function Profile() {
             </div>
           </div>
 
-          {/* Buttons */}
+          {/* submit button */}
           <div className="flex justify-between gap-3 pt-4">
             <button
               type="button"

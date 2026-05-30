@@ -143,6 +143,7 @@ export const resetPass = async (req, res) => {
     const user = await User.findOne({ email });
     if (!user || !user.isOtpVerified) {
       // Return immediately after sending the response
+     
       return res.status(400).json({ message: "Something went wrong" });
     }
 

@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React from 'react'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Forgetpass() {
   const [step, setstep] = useState(1);
   const [email, setemail] = useState();
   const [password, setpassword] = useState();
   const [otp, setotp] = useState()
-  
+  const navigate =useNavigate();
 
   const emailHandler = async(e)=>{
     e.preventDefault();
@@ -37,6 +38,7 @@ function Forgetpass() {
       e.preventDefault();
       try{
         axios.post("http://localhost:8000/api/auth/reset-password",{email,password});
+        navigate("/");
       }catch(err){
         console.log(err);
       }
